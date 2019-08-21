@@ -60,9 +60,14 @@ module.exports = {
                     '^/kpit':'' // 需要rewrite重写的
                 }
             },
-            '/foo': {
-                target: '<other_url>'
-            }
+            '/api': {
+                target: 'http://hq.sinajs.cn',
+                ws: true,
+                changeOrigin: true,
+                pathRewrite:{
+                    '^/api':'' // 需要rewrite重写的
+                }
+            },
         },  // 配置多个代理
         overlay: {
             warnings: false,
