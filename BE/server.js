@@ -1,25 +1,30 @@
 const http = require('http'),
       fs = require('fs'),
       url = require('url'),
-      qs = require('querystring'),
       iconv = require('iconv-lite');
 
 //监听访问
 let listener = (req,res) => {
   let {query,pathname} = url.parse(req.url,true);
   console.log(pathname)
+  
   if(pathname === "/"){
 
     res.setHeader('Content-Type','text/html;charset=utf-8');
     fs.createReadStream('../FE/dist/index.html').pipe(res);
 
   }else if(pathname === "/getstocks"){
+    let code = '';
+    if(query.code){
+      code = query.code.split(',')
+    }
+
     res.writeHead(200,{
       'content-type': 'application/json'
     });
 
     new Promise(function (resolve, reject) {
-        getstocks(resolve,['sh601003','sh601001'])
+        getstocks(resolve,code)
     }).then(
       (data) => {res.end(JSON.stringify(data));},  // 成功
       (err) => {res.end(err)} // 失败

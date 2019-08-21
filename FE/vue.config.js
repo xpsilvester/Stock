@@ -54,7 +54,6 @@ module.exports = {
         proxy: {
             '/kpit': {
                 target: 'http://localhost:7999',
-                //target: 'http://172.31.1.215:9097',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite:{
