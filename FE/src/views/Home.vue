@@ -14,10 +14,16 @@ export default {
   data(){
     return {
       stocks:[
+        'sh601318',
+        'sh600036',
+        'sh600887',
+        'sz000338',
+        'sh600822',
+        'sh601668',
+        'sz002151',
         'sh600895',
         'sz002815',
         'sz000078',
-        'sh600822',
         'sz002320',
         'sz000651',
         'sz002624',
@@ -27,17 +33,11 @@ export default {
         'sz002415',
         'sz300498',
         'sz002139',
-        'sh600887',
         'sh600741',
-        'sz000338',
         'sz000858',
-        'sz002151',
         'sh600030',
         'sh600519',
-        'sh601668',
-        'sh601318',
-        'sz300630',
-        'sh600036'
+        'sz300630'
       ],
       stockDatas:[]
     }
@@ -59,6 +59,12 @@ export default {
       //删除最后一个
       this.stockDatas.pop();
       console.log(this.stockDatas)
+    })
+    this.axios.post('/kpit/submitTxt',{
+      data:this.stocks.join(',')
+    })
+    .then((res)=>{
+      console.log(res.data);
     })
   }
 };
